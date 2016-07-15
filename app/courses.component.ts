@@ -12,7 +12,6 @@ import {CourseService} from './course.service'
     `,
     providers: [CourseService]
 })
-
 export class CoursesComponent {
     title = 'Title for Courses Page';
     courses;
