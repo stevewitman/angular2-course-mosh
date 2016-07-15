@@ -14,7 +14,7 @@ import {CourseService} from './course.service'
 })
 
 export class CoursesComponent {
-    title = 'Title for CoursesPage';
+    title = 'Title for Courses Page';
     courses;
     constructor(courseService: CourseService) {
         this.courses = courseService.getCourses();
