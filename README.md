@@ -1,3 +1,5 @@
+### app.component.ts
+```typrscript
 import {Component} from 'angular2/core';
 
 @Component({
@@ -11,3 +13,5 @@ export class AppComponent {
     isActive1 = true;
     isActive2 = false;
 }
+```
+![Alt text](/Users/sw/angular2/angular2-course/screenshots/01.png)
