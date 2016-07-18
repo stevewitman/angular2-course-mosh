@@ -1,4 +1,4 @@
-System.register(['angular2/core', './favorite.component'], function(exports_1, context_1) {
+System.register(['angular2/core'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,32 +10,32 @@ System.register(['angular2/core', './favorite.component'], function(exports_1, c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, favorite_component_1;
-    var AppComponent;
+    var core_1;
+    var FavoriteComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (favorite_component_1_1) {
-                favorite_component_1 = favorite_component_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
+            FavoriteComponent = (function () {
+                function FavoriteComponent() {
+                    this.isFavorite = false;
                 }
-                AppComponent = __decorate([
+                FavoriteComponent.prototype.onClick = function () {
+                    this.isFavorite = !this.isFavorite;
+                };
+                FavoriteComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        template: "\n        <favorite></favorite>\n    ",
-                        directives: [favorite_component_1.FavoriteComponent]
+                        selector: 'favorite',
+                        template: "\n        <span class=\"glyphicon\" [class.glyphicon-star-empty]=\"!isFavorite\" [class.glyphicon-star]=\"isFavorite\" (click)=\"onClick()\"></span>\n    "
                     }), 
                     __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
+                ], FavoriteComponent);
+                return FavoriteComponent;
             }());
-            exports_1("AppComponent", AppComponent);
+            exports_1("FavoriteComponent", FavoriteComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map
+//# sourceMappingURL=favorite.component.js.map
