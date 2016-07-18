@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(["angular2/core"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,41 +11,42 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var FavoriteComponent;
+    var LikeComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            FavoriteComponent = (function () {
-                function FavoriteComponent() {
-                    this.isFavorite = false;
-                    this.change = new core_1.EventEmitter();
+            LikeComponent = (function () {
+                function LikeComponent() {
+                    this.like_count = 0;
+                    this.liked = false;
                 }
-                FavoriteComponent.prototype.onClick = function () {
-                    this.isFavorite = !this.isFavorite;
-                    this.change.emit({ newValue: this.isFavorite });
+                LikeComponent.prototype.onClick = function () {
+                    this.like_count += this.liked ? -1 : 1;
+                    this.liked = !this.liked;
                 };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
-                ], FavoriteComponent.prototype, "isFavorite", void 0);
+                ], LikeComponent.prototype, "like_count", void 0);
                 __decorate([
-                    core_1.Output(), 
+                    core_1.Input(), 
                     __metadata('design:type', Object)
-                ], FavoriteComponent.prototype, "change", void 0);
-                FavoriteComponent = __decorate([
+                ], LikeComponent.prototype, "liked", void 0);
+                LikeComponent = __decorate([
                     core_1.Component({
-                        selector: 'favorite',
-                        template: "\n        <span class=\"glyphicon\" [class.glyphicon-star-empty]=\"!isFavorite\" [class.glyphicon-star]=\"isFavorite\" (click)=\"onClick()\"></span>\n    "
+                        selector: "like",
+                        template: "\n        <i\n            class=\"glyphicon glyphicon-heart\"\n            [class.highlighted]=\"liked\"\n            (click)=\"onClick()\">\n        </i>\n        <span>{{ like_count }}</span>\n    ",
+                        styles: ["\n        .glyphicon-heart {\n            color: #ccc;\n            cursor: pointer;\n        }   \n        .highlighted {\n            color: deeppink;\n        }\n    "]
                     }), 
                     __metadata('design:paramtypes', [])
-                ], FavoriteComponent);
-                return FavoriteComponent;
+                ], LikeComponent);
+                return LikeComponent;
             }());
-            exports_1("FavoriteComponent", FavoriteComponent);
+            exports_1("LikeComponent", LikeComponent);
         }
     }
 });
-//# sourceMappingURL=favorite.component.js.map
+//# sourceMappingURL=like.component.js.map

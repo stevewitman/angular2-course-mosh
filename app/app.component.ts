@@ -1,12 +1,12 @@
 import {Component} from 'angular2/core';
-import {FavoriteComponent} from './favorite.component'
+import {LikeComponent} from './like.component'
 @Component({
     selector: 'my-app',
     template: `
-        <favorite></favorite>
+        <like [like_count]="7"></like>
     `,
-    directives: [FavoriteComponent]
+    directives: [LikeComponent]
 })
 export class AppComponent { 
-   
+
 }
