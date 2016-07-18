@@ -20,13 +20,30 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
-                    this.isActive1 = true;
-                    this.isActive2 = false;
                 }
+                AppComponent.prototype.onClick1 = function () {
+                    console.log("1st button clicked");
+                };
+                AppComponent.prototype.onClick2 = function ($event) {
+                    console.log("2nd button clicked", $event);
+                };
+                AppComponent.prototype.onDivClick3 = function () {
+                    console.log("handled by div onDivClick3");
+                };
+                AppComponent.prototype.onClick3 = function ($event) {
+                    console.log("3nd button clicked", $event);
+                };
+                AppComponent.prototype.onDivClick4 = function () {
+                    console.log("handled by div onDivClick4");
+                };
+                AppComponent.prototype.onClick4 = function ($event) {
+                    $event.stopPropagation();
+                    console.log("4th button clicked", $event);
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <button class=\"btn btn-primary\"\n        [style.backgroundColor]=\"isActive1 ? 'blue' : 'gray'\">Submit</button>\n        <button class=\"btn btn-primary\"\n        [style.backgroundColor]=\"isActive2 ? 'blue' : 'gray'\">Submit</button>\n   "
+                        template: "\n        <button (click)=\"onClick1()\">Button 1</button>\n        <button (click)=\"onClick2($event)\">Button 2</button>\n        <div (click)=\"onDivClick3()\">\n            <button (click)=\"onClick3($event)\">Button 3</button>\n        </div>\n        <div (click)=\"onDivClick4()\">\n            <button (click)=\"onClick4($event)\">Button 4</button>\n        </div>\n   "
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
