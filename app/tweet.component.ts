@@ -1,25 +1,31 @@
 import {Component} from 'angular2/core'
 import {LikeComponent} from './like.component'
+import {TweetService} from './tweet.service'
 
 @Component({
     selector: 'tweet',
     template: `
-    <div class="media">
-        <div class="media-left">
-            <a href="#">
-            <img class="media-object" src="http://lorempixel.com/100/100/" alt="...">
-            </a>
-        </div>
-        <div class="media-body">
-            <span class="media-heading">Woodward</span><span class="media-handle">@woodward</span>
-            <p>Jump with the best of them.</p>
-            <like></like>
+    <div *ngFor="#tweet of tweets">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                <img class="media-object" src="{{ tweet.img_url }}" alt="...">
+                </a>
+            </div>
+            <div class="media-body">
+                <span class="media-heading">{{ tweet.title }}</span><span class="media-handle">{{ tweet.handle}}</span>
+                <p>{{ tweet.body }}.</p>
+                <like [like_count]="0"></like>
+            </div>
         </div>
     </div>
     `,
     styles: [`
+        .media {
+            padding: 10px;
+        }
         .media-object {
-            border-radius: 10px;
+            border-radius: 20px;
         }
         .media-heading {
             font-size: 24px;
@@ -30,8 +36,13 @@ import {LikeComponent} from './like.component'
             color: #ccc;
         }
     `],
-    directives: [LikeComponent]
+    directives: [LikeComponent],
+    providers: [TweetService],
 })
 export class TweetComponent {
-
+    title = 'Tweets';
+    courses;
+    constructor(tweetService: TweetService) {
+        this.tweets = tweetService.getTweets();
+    }
 }
