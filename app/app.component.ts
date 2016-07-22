@@ -6,31 +6,19 @@ import {TweetService} from './tweet.service'
 @Component({
     selector: 'my-app',
     template: `
-    <!-- use ngIf to show to create or destroy an element in the dom to free up resources -->
-        <div *ngIf="tweets.length>0" *ngFor="#tweet of tweets">
-            <tweet [data]="tweet"></tweet>
-        </div>
-        <div *ngIf="tweets.length==0">
-            You don't have any tweets yet.
-        </div>
-    <!-- bind to the hidden property to keep the element (and children) in the dom but hidden -->
-        <div [hidden]="courses.length == 0">
-            List of courses
-        </div>
-        <div [hidden]="courses.length > 0">
-            You don't have any courses yet.
+        <ul class="nav nav-pills">
+            <li [class.active]="viewMode == 'map'"><a (click)="viewMode = 'map'" href="#">Map View</a></li>
+            <li [class.active]="viewMode == 'list'"><a (click)="viewMode = 'list'" href="#">List View</a></li>
+        </ul>
+        <div [ngSwitch]="viewMode">
+            <template [ngSwitchWhen]="'map'" ngSwitchDefault>Map View Content</template>
+            <template [ngSwitchWhen]="'list'">List View Content</template>
         </div>
     `,
     directives: [TweetComponent],
     providers: [TweetService]
 })
 export class AppComponent { 
-    tweets: any[];
-
-    constructor(tweetService: TweetService) {
-        this.tweets = tweetService.getTweets();
-    }
-
-    courses = [];
+   viewMode = 'map';
 
 }
