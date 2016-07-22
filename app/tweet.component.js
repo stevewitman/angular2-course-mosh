@@ -1,4 +1,4 @@
-System.register(['angular2/core', './like.component', './tweet.service'], function(exports_1, context_1) {
+System.register(['angular2/core', './like.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './like.component', './tweet.service'], functi
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, like_component_1, tweet_service_1;
+    var core_1, like_component_1;
     var TweetComponent;
     return {
         setters:[
@@ -19,25 +19,25 @@ System.register(['angular2/core', './like.component', './tweet.service'], functi
             },
             function (like_component_1_1) {
                 like_component_1 = like_component_1_1;
-            },
-            function (tweet_service_1_1) {
-                tweet_service_1 = tweet_service_1_1;
             }],
         execute: function() {
             TweetComponent = (function () {
-                function TweetComponent(tweetService) {
+                function TweetComponent() {
                     this.title = 'Tweets';
-                    this.tweets = tweetService.getTweets();
+                    console.log(this.data);
                 }
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], TweetComponent.prototype, "data", void 0);
                 TweetComponent = __decorate([
                     core_1.Component({
                         selector: 'tweet',
-                        template: "\n    <div *ngFor=\"#tweet of tweets\">\n        <div class=\"media\">\n            <div class=\"media-left\">\n                <a href=\"#\">\n                <img class=\"media-object\" src=\"{{ tweet.img_url }}\" alt=\"...\">\n                </a>\n            </div>\n            <div class=\"media-body\">\n                <span class=\"media-heading\">{{ tweet.title }}</span><span class=\"media-handle\">{{ tweet.handle}}</span>\n                <p>{{ tweet.body }}.</p>\n                <like [like_count]=\"0\"></like>\n            </div>\n        </div>\n    </div>\n    ",
+                        template: "\n<div class=\"media\">\n    <div class=\"media-left\">\n        <a href=\"#\">\n            <img class=\"media-object\" src=\"{{ data.img_url }}\" alt=\"...\">\n        </a>\n    </div>\n    <div class=\"media-body\">\n        <span class=\"media-heading\">{{ data.author }}</span><span class=\"media-handle\">{{ data.handle}}</span>\n        <p>{{ data.body }}.</p>\n        <like [like_count]=\"data.likes\" [liked]=\"data.liked\"></like>\n    </div>\n</div>\n    ",
                         styles: ["\n        .media {\n            padding: 10px;\n        }\n        .media-object {\n            border-radius: 20px;\n        }\n        .media-heading {\n            font-size: 24px;\n            padding-right: 12px;\n        }\n        .media-handle {\n            font-size: 24px;\n            color: #ccc;\n        }\n    "],
-                        directives: [like_component_1.LikeComponent],
-                        providers: [tweet_service_1.TweetService],
+                        directives: [like_component_1.LikeComponent]
                     }), 
-                    __metadata('design:paramtypes', [tweet_service_1.TweetService])
+                    __metadata('design:paramtypes', [])
                 ], TweetComponent);
                 return TweetComponent;
             }());
