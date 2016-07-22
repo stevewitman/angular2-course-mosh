@@ -26,12 +26,13 @@ System.register(['angular2/core', './tweet.component', './tweet.service'], funct
         execute: function() {
             AppComponent = (function () {
                 function AppComponent(tweetService) {
+                    this.courses = [];
                     this.tweets = tweetService.getTweets();
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <div *ngFor=\"#tweet of tweets\">\n            <tweet [data]=\"tweet\"></tweet>\n        </div>\n    ",
+                        template: "\n    <!-- use ngIf to show to create or destroy an element in the dom to free up resources -->\n        <div *ngIf=\"tweets.length>0\" *ngFor=\"#tweet of tweets\">\n            <tweet [data]=\"tweet\"></tweet>\n        </div>\n        <div *ngIf=\"tweets.length==0\">\n            You don't have any tweets yet.\n        </div>\n    <!-- bind to the hidden property to keep the element (and children) in the dom but hidden -->\n        <div [hidden]=\"courses.length == 0\">\n            List of courses\n        </div>\n        <div [hidden]=\"courses.length > 0\">\n            You don't have any courses yet.\n        </div>\n    ",
                         directives: [tweet_component_1.TweetComponent],
                         providers: [tweet_service_1.TweetService]
                     }), 
